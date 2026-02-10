@@ -28,7 +28,7 @@ def test_predict_valid_input():
     response = client.post("/predict", json=payload)
 
     assert response.status_code == 200
-    data = response.jason()
+    data = response.json()
 
     assert "predicted_Price" in data
     assert isinstance(data["predicted_price"],(int, float))
