@@ -1,6 +1,6 @@
 name: Backend CI+Deploy to render
 
-no:
+on:
   push:
     branches: [main]
 
@@ -30,12 +30,12 @@ jobs:
           python -m pytest tests/
 
   deploy:
-    needd: test  #only runs if test job succeeds 
+    need: test  #only runs if test job succeeds 
     runs-on: ubuntu-latest
     if: github.ref ==  'refs/heads/main' #optional extra safety
     steps:
-      -name: Trigger Render Deploy
-       run:|
+     - name: Trigger Render Deploy
+       run: |
           curl -x POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
 
   
