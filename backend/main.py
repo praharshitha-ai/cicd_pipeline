@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import pickle
 import numpy as np
 import os
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(title="Linear Regression API")
 
 
@@ -20,6 +20,14 @@ def health_check():
 # Load model (clean path handling)
 # -----------------------------
 MODEL_PATH = Path(os.getenv("MODEL_PATH", "models/model.pkl"))
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://git-cicd-1-ngtw.onrender.com"],  # Or ["https://git-cicd-1-ngtw.onrender.com"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 try:
     with open(MODEL_PATH, "rb") as f:
