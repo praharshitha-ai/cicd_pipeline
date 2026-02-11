@@ -2,7 +2,7 @@ import streamlit as st
 import requests 
 
 #FastAPI endpoint 
-API_URL = ""
+API_URL = "https://cicd-pipeline-7tcq.onrender.com"
 
 st.set_page_config(
     page_title="House Price Predictor", 
